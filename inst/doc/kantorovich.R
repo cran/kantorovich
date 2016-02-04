@@ -62,7 +62,7 @@ names(mu)
 ## ------------------------------------------------------------------------
 rho <- function(x,y){
   x <- as.numeric(x); y <- as.numeric(y)
-  return(as.bigq(x-y, x+y))
+  return(as.bigq(abs(x-y), 1+abs(x-y)))
 }
 kantorovich(mu, nu, dist=rho)
 
@@ -73,4 +73,8 @@ names(mu) <- c("a", "b", "c")
 names(nu) <- c("b", "c")
 ejoinings(mu, nu)
 kantorovich(mu, nu)
+
+## ------------------------------------------------------------------------
+nu <- as.bigq(c(0,3,1), 4)
+names(nu) <- c("a", "b", "c") 
 

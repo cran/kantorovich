@@ -10,7 +10,7 @@
 
 <meta name="author" content="Stéphane Laurent" />
 
-<meta name="date" content="2016-01-13" />
+<meta name="date" content="2016-02-04" />
 
 <title>The kantorovich package</title>
 
@@ -54,7 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">The <code>kantorovich</code> package</h1>
 <h4 class="author"><em>Stéphane Laurent</em></h4>
-<h4 class="date"><em>2016-01-13</em></h4>
+<h4 class="date"><em>2016-02-04</em></h4>
 </div>
 
 
@@ -206,14 +206,14 @@ nu &lt;-<span class="st"> </span><span class="kw">as.bigq</span>(<span class="kw
 <p>But one has to be aware that there are in character mode:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(mu)</code></pre>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
-<p>Thus, one can define a distance function as follows, for example with <span class="math">\(\rho(x,y)=\frac{x-y}{x+y}\)</span>:</p>
+<p>Thus, one can define a distance function as follows, for example with <span class="math">\(\rho(x,y)=\frac{|x-y|}{1+|x-y|}\)</span>:</p>
 <pre class="sourceCode r"><code class="sourceCode r">rho &lt;-<span class="st"> </span>function(x,y){
   x &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(x); y &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(y)
-  <span class="kw">return</span>(<span class="kw">as.bigq</span>(x-y, x+y))
+  <span class="kw">return</span>(<span class="kw">as.bigq</span>(<span class="kw">abs</span>(x-y), <span class="dv">1</span>+<span class="kw">abs</span>(x-y)))
 }
 <span class="kw">kantorovich</span>(mu, nu, <span class="dt">dist=</span>rho)</code></pre>
 <pre><code>## Big Rational ('bigq') :
-## [1] 107/1890</code></pre>
+## [1] 37/378</code></pre>
 </div>
 </div>
 <div id="a-non-square-example" class="section level2">
@@ -252,6 +252,9 @@ nu &lt;-<span class="st"> </span><span class="kw">as.bigq</span>(<span class="kw
 <pre><code>## Caution: some names of mu and/or nu were missing or not compatible - automatic change</code></pre>
 <pre><code>## Big Rational ('bigq') :
 ## [1] 13/28</code></pre>
+<p>Note the caution message. The <code>kantorovich</code> package has to handle the fact that <code>mu</code> is given on the set <span class="math">\(\{a,b,c\}\)</span> while <code>nu</code> is given on the set <span class="math">\(\{b,c\}\)</span>. It detects that the second set is included in the first one, and then treats <code>nu</code> on the bigger set <span class="math">\(\{a,b,c\}\)</span> by assigning <span class="math">\(\nu(a)=0\)</span>. To avoid this caution message, the user has to enter this <span class="math">\(0\)</span> value:</p>
+<pre class="sourceCode r"><code class="sourceCode r">nu &lt;-<span class="st"> </span><span class="kw">as.bigq</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">1</span>), <span class="dv">4</span>)
+<span class="kw">names</span>(nu) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>) </code></pre>
 </div>
 
 
