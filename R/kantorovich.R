@@ -1,5 +1,3 @@
-#' @importFrom gmp as.bigq
-#'
 asab <- function(x) as.character(gmp::as.bigq(x))
 
 #' Names for bigq vectors
@@ -22,7 +20,6 @@ names.bigq <- function(x){
 # }
 
 
-#' @importFrom gmp as.bigq apply
 #' @importFrom methods formalArgs
 #'
 Vectorize_bigq <- function(f){
@@ -32,7 +29,6 @@ Vectorize_bigq <- function(f){
 }
 
 
-#' @importFrom gmp as.bigq
 #' @importFrom stats setNames
 #'
 arrange_names <- function(mu, nu){
@@ -81,7 +77,6 @@ arrange_names <- function(mu, nu){
 }
 
 
-#' @importFrom gmp as.bigq
 discrete <- function(x, y, gmp=FALSE){
   out <- if(gmp) gmp::as.bigq(x != y) else as.integer(x != y)
   return(out)
@@ -109,6 +104,7 @@ discrete <- function(x, y, gmp=FALSE){
 #' ejoinings(mu, nu)
 #'
 #' @importFrom stats model.matrix
+#' @importFrom rcdd makeH scdd
 #' @export
 ejoinings <- function(mu, nu, zeros=FALSE){
   mu0 <- mu; nu0 <- nu
@@ -169,7 +165,7 @@ ejoinings <- function(mu, nu, zeros=FALSE){
 #'
 #' @note This function, called by \code{\link{kantorovich}}, is rather for internal purpose.
 #'
-#' @importFrom gmp as.bigq
+#' @import gmp
 #' @export
 edistances <- function(mu, nu, dist=NULL, ...){
   joinings <- ejoinings(mu, nu, zeros=TRUE)

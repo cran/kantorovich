@@ -78,3 +78,21 @@ kantorovich(mu, nu)
 nu <- as.bigq(c(0,3,1), 4)
 names(nu) <- c("a", "b", "c") 
 
+## ---- collapse=TRUE------------------------------------------------------
+mu <- c(1,2,4)/7
+nu <- c(3,1,5)/9
+M <- matrix(
+  c(
+    c(0, 1, 2),
+    c(1, 0, 4),
+    c(2, 4, 0)
+  ), 
+  byrow = TRUE, nrow = 3)
+kanto_lp <- kantorovich_lp(mu, nu, dist=M)
+kanto_glpk <- kantorovich_glpk(mu, nu, dist=M)
+
+## ---- collapse=TRUE------------------------------------------------------
+print(kanto_lp, digits=22)
+print(kanto_glpk, digits=22)
+print(13/63, digits=22)
+
