@@ -90,9 +90,11 @@ M <- matrix(
   byrow = TRUE, nrow = 3)
 kanto_lp <- kantorovich_lp(mu, nu, dist=M)
 kanto_glpk <- kantorovich_glpk(mu, nu, dist=M)
+kanto_CVX <- kantorovich_CVX(mu, nu, dist=M)
 
 ## ---- collapse=TRUE-----------------------------------------------------------
 print(kanto_lp, digits=22)
 print(kanto_glpk, digits=22)
+print(kanto_CVX, digits=22)
 print(13/63, digits=22)
 
