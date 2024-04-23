@@ -8,7 +8,7 @@ ejoinings(mu, nu)
 ## -----------------------------------------------------------------------------
 kantorovich(mu, nu)
 
-## ---- message=FALSE, warning=FALSE--------------------------------------------
+## ----message=FALSE, warning=FALSE---------------------------------------------
 library(gmp)
 mu <- nu <- as.bigq(c(1,1,1), c(3,3,3)) # shorter: as.bigq(c(1,1,1), 3) 
 ejoinings(mu, nu)
@@ -78,7 +78,7 @@ kantorovich(mu, nu)
 nu <- as.bigq(c(0,3,1), 4)
 names(nu) <- c("a", "b", "c") 
 
-## ---- collapse=TRUE-----------------------------------------------------------
+## ----collapse=TRUE------------------------------------------------------------
 mu <- c(1,2,4)/7
 nu <- c(3,1,5)/9
 M <- matrix(
@@ -92,7 +92,7 @@ kanto_lp <- kantorovich_lp(mu, nu, dist=M)
 kanto_glpk <- kantorovich_glpk(mu, nu, dist=M)
 kanto_CVX <- kantorovich_CVX(mu, nu, dist=M)
 
-## ---- collapse=TRUE-----------------------------------------------------------
+## ----collapse=TRUE------------------------------------------------------------
 print(kanto_lp, digits=22)
 print(kanto_glpk, digits=22)
 print(kanto_CVX, digits=22)
